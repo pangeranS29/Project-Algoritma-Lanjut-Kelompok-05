@@ -7,6 +7,7 @@ app = Flask(__name__)
 # Initial state to track guesses and correct word
 current_word = ""
 guesses = []
+hint_attempts = 0  # Counter for hint attempts per word
 
 # Greedy algorithm for guessing
 def get_greedy_feedback(guess, correct_word): 
@@ -27,13 +28,38 @@ def get_greedy_feedback(guess, correct_word):
 def index():
     return render_template('index.html')
 
+
+# Fungsi untuk mendapatkan hint dari deskripsi
+def get_hint(description):
+    if isinstance(description, list):  # Memastikan deskripsi adalah list
+        return description
+    return description.split('. ')
+
+
+
 @app.route('/new_word', methods=['GET'])
 def new_word():
-    global current_word
+    global current_word , hint_attempts
     current_word = random.choice(list(WORDS.keys())).upper()  # Pilih kata baru
+    hint_attempts = 0  # Reset hint attempts for a new word
     description = WORDS[current_word.lower()]  # Dapatkan deskripsi kata
     
     return jsonify(word=current_word, description=description)
+
+@app.route('/get_hint', methods=['GET'])
+def get_hint_endpoint():
+    global current_word
+    description = WORDS[current_word.lower()]  # Dapatkan deskripsi kata yang sedang dimainkan
+    
+    # Ambil hint dari deskripsi
+    hints = get_hint(description)
+    
+    # Cek berapa kali hint sudah digunakan
+    if len(hints) > 0:
+        hint = hints.pop(0)  # Ambil hint pertama
+        return jsonify(hint=hint)
+    
+    return jsonify(hint="Tidak ada hint yang tersedia.")
 
 
 @app.route('/valid_words', methods=['GET'])

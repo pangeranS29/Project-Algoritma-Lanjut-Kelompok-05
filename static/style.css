@@ -4,15 +4,43 @@
 /* Hint Container Styling */
 #hint-container {
     position: absolute; /* Allows free positioning */
-    top: 5px; /* Adjust the distance from the top */
+    top: -5px; /* Adjust the distance from the top */
     left: 800px; /* Adjust the distance from the left */
     z-index: 1000;
 }
 
+#hint-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #ffffff;
+    border: 2px solid #007BFF;
+    border-radius: 8px;
+    font-size: 18px;
+    color: #333;
+    z-index: 1000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+
+#hint-modal {
+    display: none; /* Sembunyikan modal secara default */
+    position: fixed; /* Tetap di tempat */
+    z-index: 1000; /* Di atas elemen lainnya */
+    left: 0;
+    top: 0;
+    width: 100%; /* Lebar penuh */
+    height: 100%; /* Tinggi penuh */
+    background-color: rgba(0, 0, 0, 0.5); /* Latar belakang transparan */
+}
+
+
 /* Main Toolbar Styling (Adjusted) */
 #toolbar {
     position: absolute;
-    top:-10px; /* Match top alignment with the hint container */
+    top:-20px; /* Match top alignment with the hint container */
     right: 700px; /* Adjust the distance from the right */
     display: flex;
     justify-content: flex-end;
@@ -56,7 +84,7 @@ body {
 }
 
 #game-container {
-    margin: 20px auto;
+    margin: 60px auto;
 }
 
 #grid {
@@ -162,4 +190,44 @@ body {
     100% {
         transform: rotateX(0);
     }
+}
+
+
+/* Separator Styling */
+.separator {
+    width: 40%; /* Adjust width as needed */
+    margin: 20px auto; /* Center it and add spacing around */
+    
+}
+
+/* Modal Styling */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+   
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
 }

@@ -2,13 +2,56 @@ let correctWord;
 let guesses = [];
 let currentGuess = "";
 let validWords = [];
+let hintAttemptsLeft = 3;
 
 document.getElementById('hint-icon').onclick = async () => {
-    const response = await fetch('/new_word'); // Minta kata baru beserta deskripsinya dari server
-    const data = await response.json();
-    const description = data.description; // Ambil deskripsi dari response
+    if (hintAttemptsLeft > 0) {
+        const response = await fetch('/get_hint'); // Minta hint dari server
+        const data = await response.json();
+
+        displayHintMessage(`Hint: ${data.hint}`); // Tampilkan hint di modal
+        hintAttemptsLeft--; // Kurangi percobaan hint
+    } else {
+        alert("Anda telah menggunakan semua percobaan hint."); // Pemberitahuan jika tidak ada percobaan
+    }
+};
+
+
+
+// Function to display hint message in a modal
+function displayHintMessage(message) {
+    const hintModal = document.getElementById('hint-modal');
+    const hintMessageParagraph = document.getElementById('hint-message');
     
-    document.getElementById('message').textContent = `Hint: ${description}`; // Tampilkan deskripsi di #message
+    hintMessageParagraph.textContent = message; // Set message text
+    hintModal.style.display = 'block'; // Show modal
+
+    // Add close functionality
+    document.querySelector('.close-button').onclick = () => {
+        hintModal.style.display = 'none'; // Hide modal when close button is clicked
+    };
+
+    // Optional: Hide modal when clicking outside of modal content
+    window.onclick = (event) => {
+        if (event.target == hintModal) {
+            hintModal.style.display = 'none';
+        }
+    };
+}
+
+
+
+
+// Close modal when close button is clicked
+document.querySelector('.close-button').onclick = () => {
+    document.getElementById('hint-modal').style.display = 'none';
+};
+
+// Optional: Close modal when clicking outside the modal content
+window.onclick = (event) => {
+    if (event.target == document.getElementById('hint-modal')) {
+        document.getElementById('hint-modal').style.display = 'none';
+    }
 };
 
 // Fetch new word and valid words
