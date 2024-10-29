@@ -5,7 +5,7 @@
 #hint-container {
     position: absolute; /* Allows free positioning */
     top: -5px; /* Adjust the distance from the top */
-    left: 800px; /* Adjust the distance from the left */
+    left: 450px; /* Adjust the distance from the left */
     z-index: 1000;
 }
 
@@ -41,7 +41,7 @@
 #toolbar {
     position: absolute;
     top:-20px; /* Match top alignment with the hint container */
-    right: 700px; /* Adjust the distance from the right */
+    right: 350px; /* Adjust the distance from the right */
     display: flex;
     justify-content: flex-end;
     
@@ -99,8 +99,8 @@ body {
 }
 
 .cell {
-    width:90px;
-    height: 90px;
+    width:50px;
+    height: 50px;
     border: 2px solid #ccc;
     margin: 5px;
     font-size: 24px;
@@ -124,8 +124,8 @@ body {
 }
 
 .key {
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     margin: 5px;
     font-size: 18px;
     cursor: pointer;
@@ -142,16 +142,22 @@ body {
 
 /* Styles for the BACKSPACE key */
 .key-backspace {
-    width: 60px; /* Adjust the width to make it larger */
-    height: 60px; /* Same height as other keys */
+    width: 40px; /* Adjust the width to make it larger */
+    height: 40px; /* Same height as other keys */
     margin-right: 10px; /* Add margin to separate from the 'Z' key */
 }
 
 /* Styles for the ENTER key */
 .key-enter {
-    width: 80px; /* Adjust the width to make it larger */
-    height: 60px; /* Same height as other keys */
+    width: 60px; /* Adjust the width to make it larger */
+    height: 40px; /* Same height as other keys */
     margin-left: 10px; /* Add margin to separate from other keys */
+}
+
+
+/* Membuat teks pada tombol keyboard menjadi tebal */
+.key, .key-enter, .key-backspace {
+    font-weight: bold;
 }
 
 
@@ -179,6 +185,8 @@ body {
     backface-visibility: hidden;
 }
 
+
+
 @keyframes flip {
     0% {
         transform: rotateX(0);
@@ -195,7 +203,7 @@ body {
 
 /* Separator Styling */
 .separator {
-    width: 40%; /* Adjust width as needed */
+    width: 50%; /* Adjust width as needed */
     margin: 20px auto; /* Center it and add spacing around */
     
 }
@@ -231,3 +239,5 @@ body {
     font-size: 24px;
     cursor: pointer;
 }
+
+

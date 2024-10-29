@@ -34,7 +34,7 @@ def get_hint(description):
     if isinstance(description, list):  # Memastikan deskripsi adalah list
         return description
     return description.split('. ')
-
+ 
 
 
 @app.route('/new_word', methods=['GET'])
