@@ -1,3 +1,6 @@
+/* Font Awesome CSS for icons */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
+
 /* Hint Container Styling */
 #hint-container {
     position: absolute; /* Allows free positioning */
@@ -19,11 +22,19 @@
     
 }
 
+
+/* Lightbulb Icon Styling */
+#hint-icon i {
+    font-size: 24px;
+    color: #000000;
+    padding: 10px;
+}
+
 .toolbar-icon {
     font-size: 24px;
     cursor: pointer;
     margin: 0 10px;
-    padding: 5px;
+    padding: 10px;
     border: 2px solid #ccc;
     transition: background-color 0.3s, border-color 0.3s;
     
