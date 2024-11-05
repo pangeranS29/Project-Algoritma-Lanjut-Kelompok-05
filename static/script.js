@@ -16,7 +16,19 @@ document.getElementById('hint-icon').onclick = async () => {
     }
 };
 
-
+// Listen for physical keyboard input
+document.addEventListener('keydown', (event) => {
+    const key = event.key.toUpperCase(); // Convert to uppercase to match the displayed keyboard
+    if (key === 'ENTER') {
+        checkGuess();
+    } else if (key === 'BACKSPACE') {
+        deleteLetter();
+    } else if (/^[A-Z]$/.test(key) && currentGuess.length < 5) {
+        // Only accept letters A-Z for input and limit to 5 characters
+        handleKeyPress(key);
+    }
+    updateGrid();
+});
 
 // Function to display hint message in a modal
 function displayHintMessage(message) {
@@ -38,9 +50,6 @@ function displayHintMessage(message) {
         }
     };
 }
-
-
-
 
 // Close modal when close button is clicked
 document.querySelector('.close-button').onclick = () => {
@@ -128,9 +137,6 @@ function createKeyboard() {
     });
 }
 
-
-
-
 function handleKeyPress(letter) {
     if (letter === 'ENTER') {
         checkGuess();
@@ -182,8 +188,6 @@ async function checkGuess() {
     }
 }
 
-
-
 function deleteLetter() {
     currentGuess = currentGuess.slice(0, -1);
     updateGrid();
@@ -204,10 +208,33 @@ function updateGrid() {
     });
 }
 
-
-
+// Display the introductory modal when the page loads
 document.addEventListener('DOMContentLoaded', () => {
+
     fetchNewWord();
     createGrid();
     createKeyboard();
+
+
+    const introModal = document.getElementById('intro-modal');
+    const startGameButton = document.getElementById('start-game-btn');
+    const closeIntroButton = document.querySelector('close-intro-button');
+
+    // Show the intro modal
+    introModal.style.display = 'flex';
+
+    // Hide the modal when clicking the start game button
+    startGameButton.onclick = () => {
+        introModal.style.display = 'none';
+        fetchNewWord(); // Start the game by fetching a new word
+    };
+
+    // Also allow closing the modal with the close button
+    closeIntroButton.onclick = () => {
+        introModal.style.display = 'none';
+        fetchNewWord(); // Start the game if closed with the close button
+
+        
+    };
+     
 });
