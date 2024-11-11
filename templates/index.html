@@ -12,17 +12,17 @@
         <div id="hint-container">
             <span class="toolbar-icon" title="Hint" id="hint-icon"><i class="fas fa-lightbulb"></i></span>
            
-        </div>
+        </div>  
         
         <!-- Main Toolbar -->
         <div id="toolbar">
             <!-- Icons for stats and settings -->
-            <span class="toolbar-icon" title="Petunjuk Permianan" id="">❓</span>
+            <span class="toolbar-icon" title="Petunjuk Permainan" onclick="showPopup()">❓</span>
             <span class="toolbar-icon" title="Settings">⚙️</span>
         </div>
     
         <div id="game-container">
-            <h1 style="font-weight: bold;">Wordle Indonesia</h1>
+            <h1 style="font-weight: bold;text-align: center;">Wordle Indonesia</h1>
             <hr class="separator">
             <div id="grid"></div>
             <div id="keyboard"></div>
@@ -46,6 +46,49 @@
         <button id="start-game-btn">Start Game</button>
     </div>
 </div>
+
+<!-- Popup -->
+<div id="gameInstructionsPopup" class="popup">
+    <div class="container">
+        <span class="close1" onclick="closePopup()">&times;</span>
+        <h1 style="font-size: 24px; text-align: center; ">CARA MAIN</h1>
+        <p>Tebak <strong>KATA</strong> tanpa imbuhan dalam 6 kali percobaan.</p>
+        <p>Setiap tebakan harus berupa kata 5 huruf yang valid. Tekan tombol enter untuk mengirim.</p>
+        <p>Setelah setiap tebakan, warna kotak akan berubah untuk menunjukkan seberapa dekat tebakan Anda dengan kata tersebut.</p>
+        <hr>
+        <div class="example">
+            <p><strong>Contoh</strong></p>
+            <div class="word">
+                <div class="green">B</div>
+                <div class="gray">I</div>
+                <div class="gray">J</div>
+                <div class="gray">A</div>
+                <div class="gray">K</div>
+            </div>
+            <p>Huruf <strong>B</strong> di dalam tempat yang betul.</p>
+            <div class="word">
+                <div class="gray">B</div>
+                <div class="yellow">A</div>
+                <div class="gray">J</div>
+                <div class="gray">A</div>
+                <div class="gray">K</div>
+            </div>
+            <p>Huruf <strong>A</strong> di dalam tempat yang salah.</p>
+            <div class="word">
+                <div class="gray">B</div>
+                <div class="gray">I</div>
+                <div class="gray">J</div>
+                <div class="gray">A</div>
+                <div class="gray">N</div>
+            </div>
+            <p>Huruf <strong>N</strong> tiada dalam di mana-mana tempat.</p>
+        </div>
+        <hr>
+        <p class="footer">Kata-kata baru akan tersedia setiap hari!</p>
+    </div>
+</div>
+
+
 
     <script src="static/script.js"></script>
 </body>

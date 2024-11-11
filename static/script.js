@@ -208,6 +208,26 @@ function updateGrid() {
     });
 }
 
+
+// Function to show the popup
+function showPopup() {
+    document.getElementById("gameInstructionsPopup").style.display = "block";
+}
+
+// Function to close the popup
+function closePopup() {
+    document.getElementById("gameInstructionsPopup").style.display = "none";
+}
+
+// Close popup when user clicks outside of it
+window.onclick = function(event) {
+    var popup = document.getElementById("gameInstructionsPopup");
+    if (event.target === popup) {
+        popup.style.display = "none";
+    }
+}
+
+
 // Display the introductory modal when the page loads
 document.addEventListener('DOMContentLoaded', () => {
 
