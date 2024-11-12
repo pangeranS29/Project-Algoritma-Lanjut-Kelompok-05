@@ -9,6 +9,8 @@ current_word = ""
 guesses = []
 hint_attempts = 0  # Counter for hint attempts per word
 
+
+
 # Greedy algorithm for guessing
 def get_greedy_feedback(guess, correct_word): 
     feedback = []
