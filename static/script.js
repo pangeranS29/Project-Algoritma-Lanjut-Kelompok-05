@@ -181,7 +181,7 @@ async function checkGuess() {
         currentGuess = ""; // Reset guess
 
         if (data.result === 'correct') {
-            alert("Congratulations! You've guessed the word correctly.");
+            showWinnerPopup(); // Tampilkan popup winner
         }
         
         updateGrid();
@@ -253,6 +253,30 @@ async function replayFunction() {
 
     // Notifikasi untuk pengguna
     alert("Game telah di-reset. Selamat bermain!");
+}
+
+
+function showWinnerPopup() {
+    const winnerModal = document.getElementById('winner-modal');
+    winnerModal.style.display = 'block'; // Tampilkan modal
+
+    // Tambahkan event untuk tombol tutup
+    document.getElementById('winner-close-button').onclick = () => {
+        winnerModal.style.display = 'none'; // Sembunyikan modal
+    };
+
+    // Tambahkan event untuk tombol "Main Lagi"
+    document.getElementById('play-again-button').onclick = () => {
+        winnerModal.style.display = 'none'; // Sembunyikan modal
+        replayFunction(); // Reset game
+    };
+
+    // Tutup modal jika klik di luar konten
+    window.onclick = (event) => {
+        if (event.target == winnerModal) {
+            winnerModal.style.display = 'none';
+        }
+    };
 }
 
 
