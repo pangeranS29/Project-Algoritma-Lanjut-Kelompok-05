@@ -219,6 +219,8 @@ function closePopup() {
     document.getElementById("gameInstructionsPopup").style.display = "none";
 }
 
+
+
 // Close popup when user clicks outside of it
 window.onclick = function(event) {
     var popup = document.getElementById("gameInstructionsPopup");
@@ -226,6 +228,37 @@ window.onclick = function(event) {
         popup.style.display = "none";
     }
 }
+
+// Fungsi untuk mereset permainan
+async function replayFunction() {
+    // Bersihkan grid dan reset array tebakannya
+    const grid = document.getElementById('grid');
+    grid.innerHTML = ""; // Hapus grid lama
+    guesses = []; // Reset tebakan sebelumnya
+    currentGuess = ""; // Reset tebakan saat ini
+
+    // Buat grid baru
+    createGrid();
+
+    // Ambil kata baru dari server
+    await fetchNewWord();
+
+    // Reset keyboard
+    const keyboardContainer = document.getElementById('keyboard');
+    keyboardContainer.innerHTML = ""; // Hapus keyboard lama
+    createKeyboard();
+
+    // Reset hint counter
+    hintAttemptsLeft = 3;
+
+    // Notifikasi untuk pengguna
+    alert("Game telah di-reset. Selamat bermain!");
+}
+
+
+
+
+
 
 
 // Display the introductory modal when the page loads
