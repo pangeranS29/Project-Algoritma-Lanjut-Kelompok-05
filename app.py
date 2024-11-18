@@ -4,10 +4,9 @@ from words import WORDS
 
 app = Flask(__name__)
 
-# Initial state to track guesses and correct word
 current_word = ""
 guesses = []
-hint_attempts = 0  # Counter for hint attempts per word
+hint_attempts = 0 
 
 
 
